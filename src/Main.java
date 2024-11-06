@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         boolean loggedIn = false;
-        while (!loggedIn) {
+        for (int attempts = 0; attempts < 5; attempts++) {
             try {
                 System.out.print("Enter username: ");
                 String username = scanner.nextLine();
@@ -18,15 +18,16 @@ public class Main {
 
                 if (username.equals(validUsername) && password.equals(validPassword)) {
                     loggedIn = true;
+                    break;
                 } else {
-                    throw new Exception("Invalid credentials, try again");
+                    throw new Exception("Invalid credentials");
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        System.out.println("Logged in successfully!");
+        if (loggedIn) System.out.println("Logged in successfully!");
         scanner.close();
     }
 }
