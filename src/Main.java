@@ -7,22 +7,26 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        try {
-            System.out.print("Enter username: ");
-            String username = scanner.nextLine();
+        boolean loggedIn = false;
+        while (!loggedIn) {
+            try {
+                System.out.print("Enter username: ");
+                String username = scanner.nextLine();
 
-            System.out.print("Enter password: ");
-            String password = scanner.nextLine();
+                System.out.print("Enter password: ");
+                String password = scanner.nextLine();
 
-            if (!username.equals(validUsername) && !password.equals(validPassword)) {
-                throw new Exception("Invalid credentials");
+                if (username.equals(validUsername) && password.equals(validPassword)) {
+                    loggedIn = true;
+                } else {
+                    throw new Exception("Invalid credentials, try again");
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-
-            System.out.println("Logged in successfully!");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
         }
 
+        System.out.println("Logged in successfully!");
         scanner.close();
     }
 }
